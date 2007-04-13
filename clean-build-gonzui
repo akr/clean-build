@@ -1,0 +1,19 @@
+#!/bin/sh
+
+CVSROOT=:ext:gonzui.cvs.sf.net:/cvsroot/gonzui
+export CVSROOT
+
+cvs co langscan && (
+  cd langscan &&
+  ./autogen.sh &&
+  make
+) &&
+cvs co gonzui && (
+  cd gonzui &&
+  ln -s ../langscan/langscan . &&
+  ln -s ../langscan/langscan.rb . &&
+  ./autogen.sh &&
+  make
+)
+
+

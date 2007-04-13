@@ -1,0 +1,26 @@
+#!/bin/sh
+
+ulimit -v 600000
+ulimit -c unlimited
+
+renice 10 -p $$
+
+mkdir bin || exit 1
+mkdir lib || exit 1
+mkdir man || exit 1
+mkdir ruby || exit 1
+mkdir share || exit 1
+rmdir ruby
+
+prefix=`pwd`
+date
+svn co http://svn.ruby-lang.org/repos/ruby/branches/ruby_1_8 ruby || exit 1
+cd ruby &&
+time autoconf &&
+time ./configure --prefix="$prefix" "$@" &&
+time make &&
+time make install &&
+time make test &&
+time ./ruby test/runner.rb
+date
+
