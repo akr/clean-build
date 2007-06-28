@@ -19,7 +19,7 @@ date
 svn co http://svn.ruby-lang.org/repos/ruby/trunk ruby || exit 1
 cd ruby &&
 time autoconf &&
-time ./configure --prefix="$prefix" CFLAGS='-Wall -Wformat=2 -O2 -g -DRUBY_GC_STRESS' "$@" &&
+time ./configure --prefix="$prefix" CFLAGS='-Wall -Wformat=2 -O2 -g3 -DRUBY_DEBUG_ENV' "$@" &&
 time make &&
 time make install &&
 time make test &&
