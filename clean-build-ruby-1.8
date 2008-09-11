@@ -21,6 +21,6 @@ time ./configure --prefix="$prefix" "$@" &&
 time make &&
 time make install &&
 time make test &&
-time ./ruby test/runner.rb
+time ./ruby test/runner.rb -v
 date
 

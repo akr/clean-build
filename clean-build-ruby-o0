@@ -23,6 +23,6 @@ time ./configure --prefix="$prefix" --with-valgrind CFLAGS='-Wall -Wformat=2 -Wu
 time make &&
 time make install &&
 time make test &&
-time make test-all
+time make test-all TESTS=-v
 date
 
