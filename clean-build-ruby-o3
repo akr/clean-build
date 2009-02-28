@@ -1,0 +1,28 @@
+#!/bin/sh
+
+echo $$
+
+ulimit -v 600000
+ulimit -c unlimited
+
+renice 10 -p $$
+
+mkdir bin || ( rmdir bin && mkdir bin) || exit 1
+mkdir lib || ( rmdir lib && mkdir lib) || exit 1
+mkdir man || ( rmdir man && mkdir man) || exit 1
+mkdir ruby || ( rmdir ruby && mkdir ruby) || exit 1
+mkdir share || ( rmdir share && mkdir share) || exit 1
+rmdir ruby
+
+prefix=`pwd`
+date
+svn co http://svn.ruby-lang.org/repos/ruby/trunk ruby || exit 1
+cd ruby &&
+time autoconf &&
+time ./configure --prefix="$prefix" --with-valgrind CFLAGS='-Wall -Wformat=2 -Wundef -DRUBY_DEBUG_ENV' optflags=-O3 debugflags=-g3 "$@" &&
+time make &&
+time make install &&
+time make test &&
+time make test-all TESTS=-v
+date
+
