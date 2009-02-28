@@ -17,7 +17,7 @@ date
 svn co http://svn.ruby-lang.org/repos/ruby/branches/ruby_1_8 ruby || exit 1
 cd ruby &&
 time autoconf &&
-time ./configure --prefix="$prefix" CFLAGS='-Wall -Wformat=2 -Wundef -O0 -g3' "$@" &&
+time ./configure --prefix="$prefix" CFLAGS='-W -Wall -Wformat=2 -Wundef -Wno-parentheses -Wno-unused-parameter -O0 -g3' "$@" &&
 time make &&
 time make install &&
 time make test &&
