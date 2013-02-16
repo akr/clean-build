@@ -19,7 +19,7 @@ date
 svn co http://svn.ruby-lang.org/repos/ruby/trunk ruby || exit 1
 cd ruby &&
 time autoconf &&
-time ./configure --prefix="$prefix" --with-valgrind CPPFLAGS='-DRUBY_DEBUG_ENV' optflags=-O0 debugflags=-g3 warnflags='-W -Wall -Wformat=2 -Wundef -Wno-parentheses -Wno-unused-parameter -Wno-missing-field-initializers' "$@" &&
+time ./configure --prefix="$prefix" --with-valgrind CPPFLAGS='-DRUBY_DEBUG_ENV' optflags=-O0 debugflags=-g3 warnflags='-W -Wall -Wformat=2 -Wundef -Wno-parentheses -Wno-unused-parameter' "$@" &&
 time make &&
 time make install &&
 time make test &&
