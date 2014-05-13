@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ulimit -v 600000
+ulimit -v 4000000
 ulimit -c unlimited
 
 renice 10 -p $$
@@ -21,6 +21,6 @@ time ./configure --prefix="$prefix" CPPFLAGS='' optflags=-O0 debugflags=-g3 warn
 time make &&
 time make install &&
 time make test &&
-time ./ruby test/runner.rb -v
+time make test-all TESTS='--hide-skip -v'
 date
 

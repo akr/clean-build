@@ -2,7 +2,7 @@
 
 echo $$
 
-ulimit -v 600000
+ulimit -v 4000000
 ulimit -c unlimited
 
 renice 10 -p $$
@@ -23,6 +23,6 @@ time ./configure --prefix="$prefix" &&
 time make &&
 time make install &&
 time make test &&
-time make test-all TESTS=-v
+time make test-all TESTS='--hide-skip -v'
 date
 
