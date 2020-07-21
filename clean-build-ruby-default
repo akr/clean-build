@@ -16,7 +16,7 @@ rmdir ruby
 
 prefix=`pwd`
 date
-svn co http://svn.ruby-lang.org/repos/ruby/trunk ruby || exit 1
+git clone https://github.com/ruby/ruby.git || exit 1
 cd ruby &&
 time autoconf &&
 time ./configure --prefix="$prefix" &&
